@@ -4,3 +4,9 @@ alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/m
 
 # Quickly serve the current directory as HTTP
 alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
+
+# Rails / Bundler shortcuts
+alias be='bundle exec'
+alias bi='bundle install'
+alias ber='bundle exec rspec'
+alias bers='bundle exec rails s'

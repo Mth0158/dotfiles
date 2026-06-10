@@ -29,9 +29,16 @@ load-node-version() {
   [[ -f .node-version ]] && version_file=".node-version"
 
   if [[ -n "$version_file" ]]; then
-    local wanted
+    local wanted current
     wanted="$(tr -d '[:space:]' < "$version_file")"
-    command -v n >/dev/null && n "$wanted"
+    wanted="${wanted#v}"
+
+    command -v n >/dev/null || return
+
+    current="$(node -v 2>/dev/null)"
+    current="${current#v}"
+
+    [[ "$current" == "$wanted" ]] || n "$wanted"
   fi
 }
 add-zsh-hook chpwd load-node-version

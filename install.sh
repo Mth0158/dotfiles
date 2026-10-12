@@ -62,6 +62,31 @@ ln -s $PWD/Package\ Control.sublime-settings $SUBL_PATH/Packages/User/Package\ C
 ln -s $PWD/SublimeLinter.sublime-settings $SUBL_PATH/Packages/User/SublimeLinter.sublime-settings
 ln -s $PWD/Anaconda.sublime-settings $SUBL_PATH/Packages/User/Anaconda.sublime-settings
 
+# PostgreSQL auto-start (macOS)
+if [[ `uname` =~ "darwin" ]] && [[ -d "/opt/homebrew/opt/postgresql@17" ]]; then
+  chmod +x "$CURRENT_DIR/scripts/postgres-start.sh"
+  PLIST_DEST="$HOME/Library/LaunchAgents/local.postgresql@17.plist"
+  sed "s|DOTFILES|$CURRENT_DIR|g" "$CURRENT_DIR/launchagents/local.postgresql@17.plist" > "$PLIST_DEST"
+
+  brew services stop postgresql@17 2>/dev/null || true
+  launchctl bootout "gui/$(id -u)/local.postgresql@17" 2>/dev/null || true
+  launchctl bootstrap "gui/$(id -u)" "$PLIST_DEST"
+
+  echo "-----> PostgreSQL will start automatically at login"
+fi
+
+# Docker Desktop auto-start (macOS)
+if [[ `uname` =~ "darwin" ]] && [[ -d "/Applications/Docker.app" ]]; then
+  chmod +x "$CURRENT_DIR/scripts/docker-start.sh"
+  PLIST_DEST="$HOME/Library/LaunchAgents/local.docker-desktop.plist"
+  sed "s|DOTFILES|$CURRENT_DIR|g" "$CURRENT_DIR/launchagents/local.docker-desktop.plist" > "$PLIST_DEST"
+
+  launchctl bootout "gui/$(id -u)/local.docker-desktop" 2>/dev/null || true
+  launchctl bootstrap "gui/$(id -u)" "$PLIST_DEST"
+
+  echo "-----> Docker Desktop will start automatically at login"
+fi
+
 zsh ~/.zshrc
 
 echo "👌  Carry on with git setup!"

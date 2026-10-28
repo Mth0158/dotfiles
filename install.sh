@@ -13,7 +13,7 @@ backup() {
 for name in *; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
-    if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ]; then
+    if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [ "$name" != 'CLAUDE.md' ]; then
       backup $target
 
       if [ ! -e "$target" ]; then

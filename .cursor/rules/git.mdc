@@ -1,0 +1,103 @@
+---
+description: Conventional Commits for this repo. Read when committing, pushing, or drafting a commit message. Do not infer the message from git log.
+alwaysApply: false
+---
+
+# Git — Commit Messages
+
+When creating a commit, follow this rule — **not** ad-hoc styles from `git log` history.
+
+## Commit workflow
+
+Run this only when the user's own message asks for a commit (`/commit`, or a direct request such as "commit this"). A branch, a pull request, or "stack this on GitHub" is not a commit request. Do not commit because the task says "build", "ship", or "PR".
+
+If the message also asks to implement, fix, add, or change something, do that work and stop. Do not commit.
+
+When the message itself asks for a commit (commit and push only if that same message also asks to push):
+
+1. **Message format** — use **this file only**. Do **not** run `git log` or infer style from existing commits (most are legacy Le Wagon messages or merge commits).
+2. **Inspect changes** — in parallel: `git status`, `git diff` (and `git diff --staged` if needed).
+3. **Draft** — write subject (+ optional body) per the rules below; validate against [Validations](#validations).
+4. **Commit** — on the branch that is checked out, `master` included: never create or switch a branch unless the user asks. Stage relevant files, commit via HEREDOC, then `git status` to confirm.
+5. **Push** — only when explicitly requested.
+
+Never stage secrets (tokens, passwords, registry credentials). They live in the macOS Keychain, not in this repo.
+
+Format: [Conventional Commits](https://www.conventionalcommits.org/)
+
+```
+<type>(<scope>): <brief description>
+```
+
+| Part | Rule |
+|------|------|
+| `<type>` | **Required.** One of: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `build`, `ci` |
+| `<scope>` | **Optional.** Area affected — see [Scope glossary](#scope-glossary) |
+| `<description>` | **Required.** Imperative mood, lowercase start, ≤ 72 characters, no trailing punctuation |
+
+## Subject line rules
+
+- **Imperative mood** — write as a command: `add`, `fix`, `remove`, `update` — not `added`, `fixes`, `removing`
+- **Length** — keep the subject ≤ 72 characters (Git and GitHub truncate longer lines)
+- **No trailing punctuation** — no period, exclamation mark, etc.
+
+## Examples
+
+```
+feat(zsh): load kamal registry password from the keychain
+fix(install): clone zsh plugins over https
+chore(launchagents): switch postgres auto-start to version 17
+refactor(git): use cursor as the default editor
+docs(readme): describe the install steps
+chore: remove sublime text and textmate leftovers
+```
+
+## Validations
+
+Before committing, verify the subject line:
+
+1. **Pattern** — `^(feat|fix|docs|style|refactor|test|chore|perf|build|ci)(\(.+\))?: .+$`
+2. **Imperative, ≤ 72 chars, no trailing punctuation** — count with a command, never by eye. The `type(scope): ` prefix is part of the 72:
+
+   ```bash
+   printf '%s' 'fix(install): clone zsh plugins over https' | wc -m
+   ```
+
+3. **Optional body** — blank line, then paragraphs with more context
+
+## Body (optional)
+
+Use when the *why* or trade-offs are not obvious from the subject:
+
+```
+fix(install): stop appending BUNDLER_EDITOR to zshrc
+
+Every run of install.sh added another export line, leaving six duplicates.
+The editor is now set once in zshrc itself.
+```
+
+## Breaking changes
+
+For changes that require manual action on an existing machine (re-running `install.sh`, removing a launch agent, renamed files):
+
+- Add `!` after the type/scope: `refactor(launchagents)!: replace brew services with custom agents`, or
+- Add a footer: `BREAKING CHANGE: re-run install.sh to reload the launch agents`
+
+## PRs and merges
+
+- **Squash-merge PR titles** — must follow this format (the title becomes the commit subject)
+- **Merge commits** from GitHub (`Merge pull request #…`) — leave as-is; do not rewrite
+
+## Scope glossary
+
+| Scope | Area |
+|-------|------|
+| `zsh` | `zshrc` — oh-my-zsh, plugins, PATH, env vars, hooks |
+| `aliases` | `aliases` — shell aliases |
+| `git` | `gitconfig` — git aliases and settings |
+| `install` | `install.sh` — symlinking and machine setup |
+| `launchagents` | `launchagents/` and `scripts/` — PostgreSQL and Docker auto-start |
+| `ruby` | `irbrc`, `rspec` |
+| `vim` | `vimrc` |
+| `readme` | `README.md` |
+| `cursor` | `.cursor/rules/` and other AI assistant config |

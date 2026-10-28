@@ -6,7 +6,7 @@ My personal dotfiles, originally forked from [Le Wagon's dotfiles](https://githu
 zsh install.sh
 ```
 
-This symlinks every top-level file (except `*.sh` and this README) to `~/.<name>`, installs the zsh plugins, and on macOS sets up launch agents that start PostgreSQL 17 and Docker Desktop at login.
+This symlinks every top-level file (except `*.sh`, `CLAUDE.md` and this README) to `~/.<name>`, installs the zsh plugins, and on macOS sets up launch agents that start PostgreSQL 17 and Docker Desktop at login.
 
 ## Toolset
 

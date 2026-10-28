@@ -68,3 +68,6 @@ export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bi
 export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
 export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
 export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"
+
+# Kamal registry token (GitHub, write:packages), stored in the macOS Keychain, never in this repo
+export KAMAL_REGISTRY_PASSWORD="$(security find-generic-password -a "$USER" -s KAMAL_REGISTRY_PASSWORD -w 2>/dev/null)"

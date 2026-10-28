@@ -45,6 +45,7 @@ if [[ `uname` =~ "darwin" ]] && [[ -d "/opt/homebrew/opt/postgresql@17" ]]; then
 
   brew services stop postgresql@17 2>/dev/null || true
   launchctl bootout "gui/$(id -u)/local.postgresql@17" 2>/dev/null || true
+  launchctl enable "gui/$(id -u)/local.postgresql@17"
   launchctl bootstrap "gui/$(id -u)" "$PLIST_DEST"
 
   echo "-----> PostgreSQL will start automatically at login"
@@ -57,6 +58,7 @@ if [[ `uname` =~ "darwin" ]] && [[ -d "/Applications/Docker.app" ]]; then
   sed "s|DOTFILES|$CURRENT_DIR|g" "$CURRENT_DIR/launchagents/local.docker-desktop.plist" > "$PLIST_DEST"
 
   launchctl bootout "gui/$(id -u)/local.docker-desktop" 2>/dev/null || true
+  launchctl enable "gui/$(id -u)/local.docker-desktop"
   launchctl bootstrap "gui/$(id -u)" "$PLIST_DEST"
 
   echo "-----> Docker Desktop will start automatically at login"

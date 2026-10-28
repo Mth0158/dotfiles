@@ -43,10 +43,8 @@ load-node-version() {
 add-zsh-hook chpwd load-node-version
 load-node-version
 
-# Rails and Ruby uses the local `bin` folder to store binstubs.
-# So instead of running `bin/rails` like the doc says, just run `rails`
-# Same for `./node_modules/.bin` and nodejs
-export PATH="./bin:./node_modules/.bin:${PATH}"
+# No relative dirs (./bin, ./node_modules/.bin) in PATH: any repo you cd into
+# could shadow commands like `git` or `ls`. Use `bin/rails` and `npx` instead.
 export PATH="/opt/homebrew/opt/postgresql@17/bin:${PATH}"
 
 # Store your own aliases in the ~/.aliases file and load the here.

@@ -1,9 +1,8 @@
-# Get External IP / Internet Speed
+# Get External IP
 alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
-alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 
 # Quickly serve the current directory as HTTP
-alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
+alias serve='ruby -run -e httpd . -p 8000' # Or python3 -m http.server 8000
 
 # Rails / Bundler shortcuts
 alias be='bundle exec'

@@ -27,6 +27,7 @@ brew "zoxide"
 
 # Dev tools
 brew "git"
+brew "git-delta"
 brew "gh"
 brew "jq"
 brew "cloc"

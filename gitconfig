@@ -10,9 +10,17 @@
   remote = yellow
 
 [core]
-  pager = less -FRSX
+  pager = delta
   editor = cursor --wait
   excludesfile = ~/.gitignore_global
+
+# delta: syntax-highlighted diffs (https://github.com/dandavison/delta)
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true # n / N jump between files
+  line-numbers = true
 
 [alias]
   co = checkout

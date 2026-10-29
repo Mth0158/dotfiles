@@ -19,6 +19,9 @@ After installing or removing a Homebrew package, update the `Brewfile` by hand (
 Then, once:
 
 - `mise install` installs the global Ruby and Node versions from `config/mise/config.toml`
+- `ssh -T git@github.com` asks for your SSH key passphrase once and saves it in the Keychain
+
+Private SSH hosts go in `~/.ssh/config.local` (not tracked, since this repo is public).
 
 ## Toolset
 

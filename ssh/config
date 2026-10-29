@@ -1,0 +1,10 @@
+# Linked to ~/.ssh/config by install.sh. This repo is public: keep host
+# names and anything private in ~/.ssh/config.local instead.
+Include ~/.ssh/config.local
+
+Host *
+  # Load the key into macOS's built-in agent on first use and keep its
+  # passphrase in the Keychain (replaces the oh-my-zsh ssh-agent plugin)
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519

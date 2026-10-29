@@ -24,6 +24,14 @@ for name in *; do
   fi
 done
 
+# Homebrew packages (Brewfile is also linked to ~/.Brewfile for `brew bundle --global`)
+if [ -x /opt/homebrew/bin/brew ]; then
+  echo "-----> Installing Homebrew packages from Brewfile..."
+  /opt/homebrew/bin/brew bundle --file="$PWD/Brewfile"
+else
+  echo "-----> Homebrew not found, skipping Brewfile (install it from https://brew.sh)"
+fi
+
 # zsh plugins
 CURRENT_DIR=`pwd`
 ZSH_PLUGINS_DIR="$HOME/.oh-my-zsh/custom/plugins"

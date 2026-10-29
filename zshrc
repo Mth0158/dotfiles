@@ -39,3 +39,9 @@ export BUNDLER_EDITOR="cursor"
 
 # Kamal registry token (GitHub, write:packages), stored in the macOS Keychain, never in this repo
 export KAMAL_REGISTRY_PASSWORD="$(security find-generic-password -a "$USER" -s KAMAL_REGISTRY_PASSWORD -w 2>/dev/null)"
+
+# fzf: Ctrl-R fuzzy history, Ctrl-T fuzzy file picker, Alt-C fuzzy cd
+source <(fzf --zsh)
+
+# zoxide: `z <part of a path>` jumps to a directory you've visited before (keep last)
+eval "$(zoxide init zsh)"

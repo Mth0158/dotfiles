@@ -26,3 +26,4 @@ Then, once:
 - [Cursor](https://cursor.com/) as the Git and Bundler editor
 - [git](https://git-scm.com/)
 - Ruby and Node via [mise](https://mise.jdx.dev), switching on `.ruby-version`, `.node-version` and `.nvmrc`
+- [fzf](https://github.com/junegunn/fzf) for Ctrl-R history search and [zoxide](https://github.com/ajeetdsouza/zoxide) for `z <dir>`

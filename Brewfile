@@ -21,6 +21,10 @@ brew "docker", link: false
 brew "docker-buildx"
 brew "docker-compose"
 
+# Shell
+brew "fzf"
+brew "zoxide"
+
 # Dev tools
 brew "git"
 brew "gh"

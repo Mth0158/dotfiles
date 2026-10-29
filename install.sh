@@ -24,6 +24,19 @@ for name in *; do
   fi
 done
 
+# Files in subfolders keep their path: config/mise/config.toml goes to
+# ~/.config/mise/config.toml, ssh/config to ~/.ssh/config
+for name in config/**/*(.N) ssh/config; do
+  target="$HOME/.$name"
+  mkdir -p "$(dirname "$target")"
+  backup $target
+
+  if [ ! -e "$target" ]; then
+    echo "-----> Symlinking your new $target"
+    ln -s "$PWD/$name" "$target"
+  fi
+done
+
 # Homebrew packages (Brewfile is also linked to ~/.Brewfile for `brew bundle --global`)
 if [ -x /opt/homebrew/bin/brew ]; then
   echo "-----> Installing Homebrew packages from Brewfile..."

@@ -9,6 +9,7 @@ zsh install.sh
 Install [Homebrew](https://brew.sh) and [oh-my-zsh](https://ohmyz.sh/) first. The script then:
 
 - symlinks every top-level file (except `*.sh`, `CLAUDE.md` and this README) to `~/.<name>`
+- symlinks `config/**` to `~/.config/**` and `ssh/config` to `~/.ssh/config`
 - installs the packages listed in the `Brewfile`
 - installs the zsh plugins
 - on macOS, sets up launch agents that start PostgreSQL 17 and Docker Desktop at login

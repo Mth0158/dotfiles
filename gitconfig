@@ -12,6 +12,7 @@
 [core]
   pager = less -FRSX
   editor = cursor --wait
+  excludesfile = ~/.gitignore_global
 
 [alias]
   co = checkout
@@ -44,8 +45,27 @@
 [help]
   autocorrect = 1
 
+[init]
+  defaultBranch = main
+
 [push]
   default = simple
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+
+[merge]
+  conflictstyle = zdiff3
+
+[diff]
+  algorithm = histogram
+
+[rerere]
+  enabled = true
+
+[branch]
+  sort = -committerdate
 
 [branch "master"]
   mergeoptions = --no-edit

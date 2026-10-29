@@ -13,35 +13,9 @@ export HOMEBREW_NO_ANALYTICS=1
 source "${ZSH}/oh-my-zsh.sh"
 unalias rm # No interactive rm by default (brought by plugins/common-aliases)
 
-# Load rbenv if installed (to manage your Ruby versions)
-type -a rbenv > /dev/null && eval "$(rbenv init -)"
-
-# Node versions via n (https://github.com/tj/n)
-export N_PREFIX="$HOME/.n"
-export PATH="$N_PREFIX/bin:$PATH"
-
-# Auto-switch when .nvmrc or .node-version is present
-autoload -U add-zsh-hook
-load-node-version() {
-  local version_file=""
-  [[ -f .nvmrc ]] && version_file=".nvmrc"
-  [[ -f .node-version ]] && version_file=".node-version"
-
-  if [[ -n "$version_file" ]]; then
-    local wanted current
-    wanted="$(tr -d '[:space:]' < "$version_file")"
-    wanted="${wanted#v}"
-
-    command -v n >/dev/null || return
-
-    current="$(node -v 2>/dev/null)"
-    current="${current#v}"
-
-    [[ "$current" == "$wanted" ]] || n "$wanted"
-  fi
-}
-add-zsh-hook chpwd load-node-version
-load-node-version
+# Ruby and Node versions via mise (https://mise.jdx.dev), switching on
+# .ruby-version, .node-version and .nvmrc (see config/mise/config.toml)
+eval "$(mise activate zsh)"
 
 # No relative dirs (./bin, ./node_modules/.bin) in PATH: any repo you cd into
 # could shadow commands like `git` or `ls`. Use `bin/rails` and `npx` instead.

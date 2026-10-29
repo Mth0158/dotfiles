@@ -6,9 +6,8 @@ tap "appsignal/appsignal-cli"
 tap "heroku/brew"
 tap "stripe/stripe-cli"
 
-# Languages and version managers
-brew "n"
-brew "rbenv"
+# Languages and version manager (mise handles Ruby and Node, see config/mise)
+brew "mise"
 brew "python@3.11"
 brew "python-setuptools"
 

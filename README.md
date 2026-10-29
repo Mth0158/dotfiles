@@ -16,10 +16,13 @@ Install [Homebrew](https://brew.sh) and [oh-my-zsh](https://ohmyz.sh/) first. Th
 
 After installing or removing a Homebrew package, update the `Brewfile` by hand (`brew bundle check --global` and `brew bundle cleanup --global` show what differs).
 
+Then, once:
+
+- `mise install` installs the global Ruby and Node versions from `config/mise/config.toml`
+
 ## Toolset
 
 - [oh-my-zsh](https://ohmyz.sh/)
 - [Cursor](https://cursor.com/) as the Git and Bundler editor
 - [git](https://git-scm.com/)
-- Ruby via [`rbenv`](https://github.com/rbenv/rbenv)
-- Node via [`n`](https://github.com/tj/n), auto-switching on `.nvmrc` / `.node-version`
+- Ruby and Node via [mise](https://mise.jdx.dev), switching on `.ruby-version`, `.node-version` and `.nvmrc`

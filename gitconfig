@@ -87,6 +87,22 @@
 [user]
   email = mathieu.eustachy@gmail.com
   name = Mathieu Eustachy
+  signingkey = ~/.ssh/id_ed25519.pub
+
+# Sign commits and tags with the SSH key (shows "Verified" on GitHub once the
+# key is added there as a signing key). allowed_signers lets `git log
+# --show-signature` verify them locally.
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  allowedSignersFile = ~/.config/git/allowed_signers
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
 
 [credential "https://git.heroku.com"]
   helper = !heroku git:credentials

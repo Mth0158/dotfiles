@@ -13,6 +13,10 @@ export HOMEBREW_NO_ANALYTICS=1
 source "${ZSH}/oh-my-zsh.sh"
 unalias rm # No interactive rm by default (brought by plugins/common-aliases)
 
+# History: keep the same number of commands in memory and on disk
+HISTSIZE=100000
+SAVEHIST=100000
+
 # Ruby and Node versions via mise (https://mise.jdx.dev), switching on
 # .ruby-version, .node-version and .nvmrc (see config/mise/config.toml)
 eval "$(mise activate zsh)"

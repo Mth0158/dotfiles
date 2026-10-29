@@ -90,3 +90,10 @@
 
 [credential "https://git.heroku.com"]
   helper = !heroku git:credentials
+
+# Written by GitHub Desktop on launch (it bundles git-lfs); keep it to avoid churn
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

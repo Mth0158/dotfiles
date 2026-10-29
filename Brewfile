@@ -11,6 +11,13 @@ brew "mise"
 brew "python@3.11"
 brew "python-setuptools"
 
+# Libraries the installed Rubies link against: keep them so `brew autoremove`
+# does not break YAML, OpenSSL or compression in Ruby
+brew "libyaml"
+brew "openssl@3"
+brew "openssl@4"
+brew "xz"
+
 # Databases and services
 brew "postgresql@17" # started by launchagents/local.postgresql@17.plist
 brew "libpq", link: true

@@ -12,11 +12,15 @@ brew "python@3.11"
 brew "python-setuptools"
 
 # Libraries the installed Rubies link against: keep them so `brew autoremove`
-# does not break YAML, OpenSSL or compression in Ruby
+# does not break YAML, OpenSSL, bignums or compression in Ruby
+brew "gmp"
 brew "libyaml"
 brew "openssl@3"
 brew "openssl@4"
 brew "xz"
+# Rubies are built with gmkdir/ginstall as MKDIR_P/INSTALL: without coreutils,
+# native gems (cgi, etc.) fail to build during `bundle`
+brew "coreutils"
 
 # Databases and services
 brew "postgresql@17" # started by launchagents/local.postgresql@17.plist

@@ -4,6 +4,9 @@
 [tools]
 ruby = "4.0.9"
 node = "26.12.1"
+# Global npm CLIs, installed by `mise install` (not `npm install -g`, which ties them to one Node version)
+# Cloudflare CLI (beta): pinned, since mise's `latest` skips pre-releases and resolves to the old 0.x
+"npm:cf" = "1.0.0-rc.0"
 
 [settings]
 # Read .ruby-version, .node-version and .nvmrc (off by default since mise 2025.10)

@@ -73,6 +73,32 @@ done
 echo "-----> Installing Ruby and Node with mise..."
 (cd "$HOME" && mise install)
 
+# GAM7, Google Workspace admin CLI, to ~/bin/gam7 (on PATH from zshrc). Official installer:
+# -l installs only (no Google project or auth setup), -p false leaves zshrc alone.
+# Its config (~/.gam) is per Workspace and holds a key path: set up by hand, not tracked.
+if [ ! -x "$HOME/bin/gam7/gam" ]; then
+  echo "-----> Installing GAM7..."
+  bash <(curl -fsSL https://raw.githubusercontent.com/GAM-team/GAM/main/src/gam-install.sh) -l -p false \
+    || echo "-----> GAM7 install failed, see above"
+fi
+
+# Claude Code: user instructions and plugins
+link "claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+if command -v claude >/dev/null; then
+  # <marketplace repo> <plugin@marketplace>
+  for entry in "cloudflare/skills cloudflare@cloudflare"; do
+    marketplace=${entry%% *}
+    plugin=${entry##* }
+    if ! claude plugin list 2>/dev/null | grep -q "$plugin"; then
+      echo "-----> Installing Claude Code plugin '$plugin'..."
+      claude plugin marketplace add "$marketplace" >/dev/null && claude plugin install "$plugin" \
+        || echo "-----> Claude Code plugin '$plugin' failed, see above"
+    fi
+  done
+else
+  echo "-----> Claude Code not found, skipping its plugins (brew install --cask claude-code, then re-run)"
+fi
+
 # Cursor settings, keybindings and extensions
 CURSOR_USER="$HOME/Library/Application Support/Cursor/User"
 for name in settings.json keybindings.json; do

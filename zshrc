@@ -25,6 +25,11 @@ eval "$(mise activate zsh)"
 # could shadow commands like `git` or `ls`. Use `bin/rails` and `npx` instead.
 export PATH="/opt/homebrew/opt/postgresql@17/bin:${PATH}"
 
+# GAM7 (Google Workspace admin CLI), installed to ~/bin/gam7 by install.sh.
+# oh-my-zsh's git plugin aliases `gam` to `git am`: drop it so `gam` is GAM.
+unalias gam 2>/dev/null
+export PATH="$HOME/bin/gam7:${PATH}"
+
 # Store your own aliases in the ~/.aliases file and load the here.
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
